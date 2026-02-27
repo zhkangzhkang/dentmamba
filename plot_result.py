@@ -8,7 +8,7 @@ import matplotlib.pylab as plt
 
 pwd = os.getcwd()
 
-names = ['exp3' ]  # 指定训练文件的路径
+names = []
 
 plt.figure(figsize=(10, 10))
 

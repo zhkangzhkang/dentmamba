@@ -17,14 +17,14 @@ def get_weight_size(path):
     return f'{stats.st_size / 1024 / 1024:.1f}'
 
 if __name__ == '__main__':
-    model_path = '/home/File/wc123/RTDETR-20251008/runs/train/exp3/weights/best.pt'
+    model_path = 'runs/train/exp/weights/best.pt'
     model = RTDETR(model_path) # 选择训练好的权重路径
-    result = model.val(data='/home/File/wc123/RTDETR-20251008/dataset/data.yaml',
-                      split='train', # split可以选择train、val、test 根据自己的数据集情况来选择.
+    result = model.val(data='/root/dataset/dataset_visdrone/data.yaml',
+                      split='test', # split可以选择train、val、test 根据自己的数据集情况来选择.
                       imgsz=640,
                       batch=4,
                     #   save_json=True, # if you need to cal coco metrice
-                      project='runs/val/train',
+                      project='runs/val',
                       name='exp',
                       )
     

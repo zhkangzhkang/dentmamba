@@ -221,15 +221,15 @@ class rtdetr_heatmap:
 
 def get_params():
     params = {
-        'weight': '/home/File/wc123/RTDETR-20251008/runs/train/exp3/weights/best.pt',  # 修改新的权重文件
+        'weight': 'weights/rtdetr-r18.pt',
         'device': 'cuda:0',
         'method': 'GradCAMPlusPlus', # GradCAMPlusPlus, GradCAM, XGradCAM, EigenCAM, HiResCAM, LayerCAM, RandomCAM, EigenGradCAM
         'layer': [15,19,22,25],
-        'backward_type': 'all',   # class, box, all
-        'conf_threshold': 0.2,    # 0.2
-        'ratio': 1.0,             # 0.02-0.1
-        'show_box': False,        # 需要绘制框请设置为True
-        'renormalize': False      # 需要把热力图限制在框内请设置为True
+        'backward_type': 'all', # class, box, all
+        'conf_threshold': 0.2, # 0.2
+        'ratio': 1.0, # 0.02-0.1
+        'show_box': True, # 不需要绘制框请设置为False
+        'renormalize': True # 需要把热力图限制在框内请设置为True
     }
     return params
 
@@ -237,4 +237,4 @@ def get_params():
 
 if __name__ == '__main__':
     model = rtdetr_heatmap(**get_params())
-    model(r'/home/File/wc123/RTDETR-20251008/dataset/images/val', 'runs/heatmap1/val')  # 设置输入输出图片路径（可以生成train/test/val）
+    model(r'/home/hjj/Desktop/dataset/dataset_voc/images', 'result')

@@ -5,10 +5,10 @@ from ultralytics import RTDETR
 # 预测框粗细和颜色修改问题可看<使用说明.md>下方的<YOLOV8源码常见疑问解答小课堂>第六点
 
 if __name__ == '__main__':
-    model = RTDETR('/home/File/wc123/RTDETR-20251008/runs/train/exp2/weights/best.pt') # select your model.pt path
-    model.predict(source='/home/File/wc123/RTDETR-20251008/dataset/images/test/',
+    model = RTDETR('runs/train/exp/weights/best.pt') # select your model.pt path
+    model.predict(source='dataset/images/test',
                   conf=0.25,
-                  project='runs/detect/test',
+                  project='runs/detect',
                   name='exp',
                   save=True,
                   # visualize=True # visualize model features maps

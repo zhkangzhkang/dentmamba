@@ -17,16 +17,22 @@ from ultralytics import RTDETR
 # 但是在val.py的时候精度为0，所以统一改成fp32，原则上没影响，只是存储的位数变多了。
 
 if __name__ == '__main__':
-    model = RTDETR('ultralytics/cfg/models/rt-detr/rtdetr-r18.yaml')
-    # model.load('') # loading pretrain weights
-    model.train(data='dataset/data.yaml',
+    # model = RTDETR('/data1/wc123/20251008_RTDETR/ultralytics/cfg/models/rt-detr/rtdetr-r50.yaml')   # ./ultralytics/cfg/models/rt-detr/rtdetr-r18.yaml
+    # model.load('/data1/wc123/20251008_RTDETR/weights/weights/rtdetr-r50.pt') # loading pretrain weights  /data1/wc123/20251008_RTDETR/weights/weights/rtdetr-r18.pt
+
+    model = RTDETR('./ultralytics/cfg/models/rt-detr/11111.yaml')   # ./ultralytics/cfg/models/rt-detr/rtdetr-r18.yaml
+    model.load('./weights/weights/rtdetr-r18.pt') # loading pretrain weights  /data1/wc123/20251008_RTDETR/weights/weights/rtdetr-r18.pt
+
+    model.train(data='./dataset/data.yaml',
                 cache=False,
-                imgsz=640,
-                epochs=300,
+                imgsz=1024,  # 默认值640
+                epochs=150, # 默认300
                 batch=4, # batchsize 不建议乱动，一般来说4的效果都是最好的，越大的batch效果会很差(经验之谈)
                 workers=4, # Windows下出现莫名其妙卡主的情况可以尝试把workers设置为0
-                # device='0,1', # 指定显卡和多卡训练参考<使用教程.md>下方常见错误和解决方案
-                # resume='', # last.pt path
+                device='0', # 指定显卡和多卡训练参考<使用教程.md>下方常见错误和解决方案
+                # resume='/home/File/wc123/RTDETR-20251008/runs/train/exp15/weights/last.pt',  # 断点继续训练
                 project='runs/train',
                 name='exp',
+                
                 )
+# CUDA_VISIBLE_DEVICES=3 python train_copy.py
